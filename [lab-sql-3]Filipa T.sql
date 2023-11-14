@@ -70,9 +70,10 @@ from sakila.rental
 
 -- 8. How many rentals were in the last month of activity?
 
-select count(*)
-from sakila.rental
-where date_format(rental_date, '%M%Y') = 'August2005'
-;
+select max(convert(rental_date, date)) as datetype from sakila.rental;
 
--- There were 5686 rentals in the last month of activity
+select count(rental_id) from sakila.rental 
+where (date_format(convert(rental_date, date),'%M')="February") 
+and (date_format(convert(rental_date, date),'%Y')=2006)
+
+-- There were 182 rentals in the last month of activity
