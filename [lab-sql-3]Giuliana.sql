@@ -37,14 +37,16 @@ else 'weekday'
 end as day_type
 from sakila.rental;
 
+
 -- How many rentals were in the last month of activity?
 -- I first identify the last month of activity
-select max(rental_date) as last_activity
+select rental_date 
 from sakila.rental
-group by rental_date
+order by rental_date desc
 limit 1;
--- Now I select and count the results of May 2005. I used the rental_date column because some of the clients might not have returned
+
+-- Now I select and count the results of February 2006. I used the rental_date column because some of the clients might not have returned
 -- their films
 select count(rental_date) as total_rentals
 from sakila.rental
-where extract(year_month from rental_date) = 200505;
+where extract(year_month from rental_date) = 200602;
